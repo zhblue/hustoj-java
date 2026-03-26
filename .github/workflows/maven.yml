@@ -39,16 +39,17 @@ jobs:
       - name: Wait for MySQL
         run: |
           for i in {1..30}; do
-            mysqladmin ping -h 127.0.0.1 -u root -proot --silent && echo "MySQL ready" && break
+            mysqladmin ping -h 127.0.0.1 -u root -proot --silent 2>/dev/null && echo "MySQL ready" && exit 0
             echo "Waiting for MySQL... ($i/30)"
             sleep 2
           done
+          exit 1
 
-      - name: Create HUSTOJ tables
+      - name: Create database and tables
         run: |
-          mysql -h 127.0.0.1 -u root -proot jol < src/test/resources/schema.sql || true
+          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE IF NOT EXISTS jol; USE jol; SOURCE src/test/resources/schema.sql;" || true
 
-      - name: Createoj.properties
+      - name: Create oj.properties
         run: |
           mkdir -p src/main/resources
           cat > src/main/resources/oj.properties << 'PROPS'
@@ -60,10 +61,10 @@ oj.name=HUSTOJ
 oj.lang=cn
 PROPS
 
-      - name: Build with Maven
+      - name: Build
         run: mvn package -DskipTests
 
-      - name: Run tests
+      - name: Test
         run: mvn test
 
       - name: Upload WAR artifact
@@ -71,12 +72,4 @@ PROPS
         with:
           name: hustoj.war
           path: target/*.war
-          retention-days: 7
-
-      - name: Upload test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: target/surefire-reports/
           retention-days: 7
