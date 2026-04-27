@@ -85,4 +85,7 @@ public class Solution {
     public static final int RESULT_CO = 12; // Compile OK
     public static final int RESULT_TR = 13; // Test Run
     public static final int RESULT_MC = 14; // Manual Confirmation
+    public static final int RESULT_SUBMITTING = 15; // Submitting
+    public static final int RESULT_REMOTE_PENDING = 16; // Remote Pending
+    public static final int RESULT_REMOTE_JUDGING = 17; // Remote Judging
 }

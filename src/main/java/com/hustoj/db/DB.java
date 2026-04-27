@@ -202,6 +202,18 @@ public class DB {
         return getConfig("oj.login.mod", "hustoj");
     }
 
+    public static int getLoginFailLimit() {
+        return getConfigInt("oj.login.fail.limit", 5);
+    }
+
+    public static boolean isLongLogin() {
+        return getConfigBool("oj.long.login");
+    }
+
+    public static int getLongLoginTime() {
+        return getConfigInt("oj.long.login.time", 86400);
+    }
+
     public static int getSubmitCooldownTime() {
         return getConfigInt("oj.submit.cooldown.time", 10);
     }
@@ -258,14 +270,15 @@ public class DB {
     public static String[] JUDGE_RESULT_COLORS;
 
     static {
-        JUDGE_RESULT_NAMES = new String[]{"Pending", "Pending_Rejudging", "Compiling", "Running_Judging", 
-            "Accepted", "Presentation_Error", "Wrong_Answer", "Time_Limit_Exceed", 
-            "Memory_Limit_Exceed", "Output_Limit_Exceed", "Runtime_Error", "Compile_Error", 
-            "Compile_OK", "Test_Run", "Manual_Confirmation"};
-        JUDGE_RESULT_COLORS = new String[]{"label gray", "label label-info", "label label-warning", 
+        JUDGE_RESULT_NAMES = new String[]{"Pending", "Pending_Rejudging", "Compiling", "Running_Judging",
+            "Accepted", "Presentation_Error", "Wrong_Answer", "Time_Limit_Exceed",
+            "Memory_Limit_Exceed", "Output_Limit_Exceed", "Runtime_Error", "Compile_Error",
+            "Compile_OK", "Test_Run", "Manual_Confirmation", "Submitting", "Remote_Pending", "Remote_Judging"};
+        JUDGE_RESULT_COLORS = new String[]{"label gray", "label label-info", "label label-warning",
             "label label-warning", "label label-success", "label label-danger", "label label-danger",
             "label label-warning", "label label-warning", "label label-warning", "label label-warning",
-            "label label-warning", "label label-warning", "label label-info", "label label-success"};
+            "label label-warning", "label label-warning", "label label-info", "label label-success",
+            "label label-info", "label label-info", "label label-warning"};
     }
 
     public static String getResultName(int result) {
