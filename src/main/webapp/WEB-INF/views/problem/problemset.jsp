@@ -5,11 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Problem Set - ${OJ_NAME}</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hoj.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/katex.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<div class="container">
+
+<div class="container mt-4"><div class="container mt-4">
     <h2>Problem Set</h2>
     <form method="get" class="form-inline mb-3">
         <input type="text" name="search" value="${keyword}" class="form-control" placeholder="Search..."/>
@@ -55,7 +59,6 @@
             </c:if>
         </ul>
     </nav>
-</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

@@ -5,11 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Contests - ${OJ_NAME}</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hoj.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/katex.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<div class="container">
+
+<div class="container mt-4"><div class="container mt-4">
     <h2>Contests</h2>
     <p>
         <a href="?filter=running" class="btn btn-success">Running</a>
@@ -40,7 +44,6 @@
             </c:forEach>
         </tbody>
     </table>
-</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

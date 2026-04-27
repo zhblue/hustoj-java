@@ -5,11 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Problem List - ${OJ_NAME}</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hoj.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/katex.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<div class="container">
+
+<div class="container mt-4"><div class="container mt-4">
     <h2>Admin - Problem List</h2>
     <p><a href="${pageContext.request.contextPath}/admin/problem-add" class="btn btn-primary">Add Problem</a></p>
     <table class="table table-striped">
@@ -31,7 +35,6 @@
             </c:forEach>
         </tbody>
     </table>
-</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

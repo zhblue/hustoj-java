@@ -5,14 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Compile Error</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hoj.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/katex.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<div class="container">
+
+<div class="container mt-4"><div class="container mt-4">
     <h2>Compile Error</h2>
     <pre class="error-output">${info}</pre>
-</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

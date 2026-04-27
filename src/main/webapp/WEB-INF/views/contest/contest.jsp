@@ -5,11 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>${contest.title} - ${OJ_NAME}</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hoj.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/katex.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<div class="container">
+
+<div class="container mt-4"><div class="container mt-4">
     <h2>${contest.title}</h2>
     <p>Start: ${contest.startTime} | End: ${contest.endTime}</p>
     <p>${contest.description}</p>
@@ -31,7 +35,6 @@
         </tbody>
     </table>
     <a href="${pageContext.request.contextPath}/contestrank?cid=${contest.contestId}" class="btn btn-info">Rank</a>
-</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

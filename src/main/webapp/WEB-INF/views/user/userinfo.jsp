@@ -5,11 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>User Info - ${OJ_NAME}</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hoj.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/katex.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<div class="container">
+
+<div class="container mt-4"><div class="container mt-4">
     <h2>User: ${user.userId}</h2>
     <table class="table">
         <tr><th>Nick</th><td>${user.nick}</td></tr>
@@ -23,7 +27,6 @@
     <c:if test="${sessionScope.HUSTOJ_user_id == user.userId || sessionScope.HUSTOJ_administrator != null}">
         <a href="${pageContext.request.contextPath}/modifypassword" class="btn btn-primary">Change Password</a>
     </c:if>
-</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

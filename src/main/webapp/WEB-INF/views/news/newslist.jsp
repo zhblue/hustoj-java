@@ -5,24 +5,27 @@
 <head>
     <meta charset="UTF-8">
     <title>News</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hoj.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/katex.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
-<div class="container">
+
+<div class="container mt-4"><div class="container mt-4">
     <h2>News</h2>
     <c:forEach var="n" items="${newsList}">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card">
+            <div class="card-header">
                 <h3><a href="${pageContext.request.contextPath}/viewnews?id=${n.newsId}">${n.title}</a></h3>
                 <small>${n.time} by ${n.userId}</small>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 ${n.content}
             </div>
         </div>
     </c:forEach>
-</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"/>
 </body>
 </html>

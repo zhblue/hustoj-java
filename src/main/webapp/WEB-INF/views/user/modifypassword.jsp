@@ -10,22 +10,22 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h3>Change Password</h3></div>
-                <div class="panel-body">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header"><h3>Change Password</h3></div>
+                <div class="card-body">
                     <c:if test="${error != null}"><div class="alert alert-danger">${error}</div></c:if>
                     <c:if test="${message != null}"><div class="alert alert-success">${message}</div></c:if>
                     <form method="post">
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Old Password</label>
                             <input type="password" name="old_password" class="form-control" required/>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>New Password</label>
                             <input type="password" name="password" class="form-control" required/>
                         </div>
-                        <div class="form-group">
+                        <div class="mb-3">
                             <label>Repeat Password</label>
                             <input type="password" name="rptpassword" class="form-control" required/>
                         </div>
