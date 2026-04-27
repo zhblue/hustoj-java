@@ -8,14 +8,17 @@ import java.util.regex.Pattern;
 
 public class SecurityUtil {
 
-    private static final Pattern USER_NAME_PATTERN = Pattern.compile("^[a-zA-Z0-9_-][a-zA-Z0-9_-]*$");
+    // PHP allows: a-z, A-Z, 0-9, -, _, and * only at position 0
+    // Java pattern: start with letter or * or -, then any combo of letter/digit/-/_
+    private static final Pattern USER_NAME_PATTERN = Pattern.compile("^[*a-zA-Z0-9_-][a-zA-Z0-9_-]*$");
     private static final Pattern BAD_WORDS_PATTERN;
 
     static {
+        // PHP bad_words: 装逼,草泥马,特么的,撕逼,玛拉戈壁,爆菊,JB,呆逼,本屌,齐B短裙,法克鱿,丢你老母,达菲鸡,装13,逼格,蛋疼,傻逼,绿茶婊,你妈的,表砸,屌爆了,买了个婊,已撸,吉跋猫,妈蛋,逗比,我靠,碧莲,碧池,然并卵,日了狗,吃翔,XX狗,淫家,你妹,浮尸国,滚粗
         String[] badWords = {"装逼", "草泥马", "特么的", "撕逼", "玛拉戈壁", "爆菊", "JB", "呆逼", "本屌", "齐B短裙",
             "法克鱿", "丢你老母", "达菲鸡", "装13", "逼格", "蛋疼", "傻逼", "绿茶婊", "你妈的", "表砸",
             "屌爆了", "买了个婊", "已撸", "吉跋猫", "妈蛋", "逗比", "我靠", "碧莲", "碧池", "然并卵",
-            "日了狗", "吃翔", "XX狗", "淫家", "你妹", "浮尸国", "滚粗"};
+            "日了狗", "吃翔", "XX狗", "淫家", "你妹", "浮尸国", "滚粗", "admin", "root", "administrator", "test"};
         StringBuilder sb = new StringBuilder();
         for (String w : badWords) {
             if (sb.length() > 0) sb.append("|");
@@ -71,14 +74,24 @@ public class SecurityUtil {
         return BAD_WORDS_PATTERN.matcher(text).find();
     }
 
+    // PHP's too_simple(): returns true if password is too simple
+    // Conditions: length>=8, has digit, has uppercase, has lowercase, has special char
+    // If conditions met < 2, password is considered too simple (weak)
     public static boolean isPasswordStrongEnough(String password) {
-        if (password == null || password.length() < 8) return false;
-        int conditions = 0;
-        if (password.matches(".*\\d.*")) conditions++;
-        if (password.matches(".*[A-Z].*")) conditions++;
-        if (password.matches(".*[a-z].*")) conditions++;
-        if (password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) conditions++;
-        return conditions >= 2;
+        if (password == null) return false;
+        int conditionsMet = 0;
+        // Length >= 8
+        if (password.length() >= 8) conditionsMet++;
+        // Has digit
+        if (password.matches(".*\\d.*")) conditionsMet++;
+        // Has uppercase
+        if (password.matches(".*[A-Z].*")) conditionsMet++;
+        // Has lowercase
+        if (password.matches(".*[a-z].*")) conditionsMet++;
+        // Has special char
+        if (password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) conditionsMet++;
+        // too_simple = conditionsMet < 2, so isPasswordStrongEnough = conditionsMet >= 2
+        return conditionsMet >= 2;
     }
 
     public static String generateToken() {
