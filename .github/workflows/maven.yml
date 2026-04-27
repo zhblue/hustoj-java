@@ -23,14 +23,12 @@ jobs:
       - name: Create oj.properties
         run: |
           mkdir -p src/main/resources
-          cat > src/main/resources/oj.properties << 'PROPS'
-db.host=localhost
-db.name=jol
-db.user=root
-db.password=root
-oj.name=HUSTOJ
-oj.lang=cn
-PROPS
+          echo 'db.host=localhost' > src/main/resources/oj.properties
+          echo 'db.name=jol' >> src/main/resources/oj.properties
+          echo 'db.user=root' >> src/main/resources/oj.properties
+          echo 'db.password=root' >> src/main/resources/oj.properties
+          echo 'oj.name=HUSTOJ' >> src/main/resources/oj.properties
+          echo 'oj.lang=cn' >> src/main/resources/oj.properties
 
       - name: Build
         run: mvn package -DskipTests
